@@ -2,6 +2,7 @@ package com.test.bookstore.models;
 
 import java.math.BigDecimal;
 
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -20,11 +21,10 @@ import lombok.Setter;
 public class BookModel {
     @Id
     private Long bookId;
-
-    private String title;
+    public String title;
     private String description;
-    private Integer stock;
-    private BigDecimal salePrice;
+    public Integer stock;
+    public BigDecimal salePrice;
 
     @Builder.Default
     private Boolean available = true;

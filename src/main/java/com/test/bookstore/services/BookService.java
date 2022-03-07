@@ -32,6 +32,9 @@ public class BookService {
     MongoOperations mongoOperations;
 
     public BookModel saveBook(BookModel book){
+        if(book.title == null || book.stock == null || book.salePrice == null)
+            throw new NullPointerException();
+        
         book.setBookId(this.nextBookId());
         return bookRepository.save(book);
     }
