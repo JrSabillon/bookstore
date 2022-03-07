@@ -20,7 +20,7 @@ public class BookController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public BookModel sabeBook(@RequestBody BookModel book){
+    public BookModel saveBook(@RequestBody BookModel book){
         BookModel result = bookService.saveBook(book);
         return result;
     } 
