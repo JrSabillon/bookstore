@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import com.test.bookstore.models.BookModel;
 import com.test.bookstore.repositories.BookRepository;
+import com.test.bookstore.repositories.LikeRepository;
+import com.test.bookstore.repositories.SaleRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -19,6 +21,12 @@ import org.springframework.stereotype.Service;
 public class BookService {
     @Autowired
     BookRepository bookRepository;
+
+    @Autowired
+    LikeRepository likeRepository;
+
+    @Autowired
+    SaleRepository saleRepository;
 
     @Autowired 
     MongoOperations mongoOperations;
@@ -42,6 +50,8 @@ public class BookService {
 
     public void deleteBookById(Long bookId){
         bookRepository.deleteById(bookId);
+        likeRepository.deleteByBookId(bookId);
+        saleRepository.deleteByBookId(bookId);
     }
 
     /**
@@ -93,6 +103,6 @@ public class BookService {
         query.with(Sort.by(Sort.Direction.DESC, "bookId"));
         BookModel lastBook = mongoOperations.findOne(query, BookModel.class);
 
-        return lastBook == null ? 1 : lastBook.bookId + 1;
+        return lastBook == null ? 1 : lastBook.getBookId() + 1;
     }
 }

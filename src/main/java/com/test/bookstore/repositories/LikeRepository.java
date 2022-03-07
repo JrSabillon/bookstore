@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LikeRepository extends MongoRepository<LikeModel, Integer> {
     public Optional<LikeModel> findByBookId(Long bookId);
+    public void deleteByBookId(Long bookId);
 }

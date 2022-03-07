@@ -1,5 +1,7 @@
 package com.test.bookstore.models;
 
+import java.math.BigDecimal;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -17,15 +19,15 @@ import lombok.Setter;
 @Document(collection = "books")
 public class BookModel {
     @Id
-    public Long bookId;
+    private Long bookId;
 
-    public String title;
-    public String description;
-    public Integer stock;
-    public String salePrice;
+    private String title;
+    private String description;
+    private Integer stock;
+    private BigDecimal salePrice;
 
     @Builder.Default
-    public Boolean available = true;
+    private Boolean available = true;
 
     /**
      * Se crearon estos getters manualmente para controlar los campos requeridos
@@ -46,7 +48,7 @@ public class BookModel {
         return stock;
     }
 
-    public String getsalePrice(){
+    public BigDecimal getsalePrice(){
         if(salePrice == null)
             throw new NullPointerException();
 

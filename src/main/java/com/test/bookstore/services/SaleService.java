@@ -1,5 +1,7 @@
 package com.test.bookstore.services;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Optional;
 
 import com.test.bookstore.models.BookModel;
@@ -24,19 +26,20 @@ public class SaleService {
             BookModel bookData = book.get();
             
             //Validamos que hay libros en stock o que no este disponible
-            if(bookData.stock <= 0 || !bookData.available)
+            if(bookData.getStock() <= 0 || !bookData.getAvailable())
             return null;
             
             //registramos la venta
-            sale.setPrice(Double.parseDouble(bookData.salePrice));
-            sale.setBookId(bookData.bookId);
+            sale.setPrice(bookData.getsalePrice());
+            sale.setBookId(bookData.getBookId());
+            sale.setSaleDate(LocalDate.now());
             SaleModel newSale = saleRepository.save(sale);
 
             //Actualizamos el stock
-            bookData.stock--;
+            bookData.setStock(bookData.getStock() - 1);
             //Si ya no hay stock pasar el libro a no disponible
-            if(bookData.stock == 0)
-            bookData.available = false;
+            if(bookData.getStock() == 0)
+            bookData.setAvailable(false);
 
             bookService.updateBook(bookData);
 

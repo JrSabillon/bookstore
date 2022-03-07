@@ -1,5 +1,9 @@
 package com.test.bookstore.models;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -21,5 +25,7 @@ public class SaleModel {
     public Long bookId;
     @NonNull    
     public String customerEmail;
-    public Double price;
+    public BigDecimal price;
+    @CreatedDate
+    public LocalDate saleDate;
 }

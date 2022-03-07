@@ -24,7 +24,7 @@ public class LikeService {
         if(book.isPresent()){
             BookModel bookData = book.get();
 
-            if(bookData.available){
+            if(bookData.getAvailable()){
                 //Solo los libros disponibles pueden recibir like
                 Optional<LikeModel> currentLikes = likeRepository.findByBookId(like.bookId);
                 LikeModel likeData;
