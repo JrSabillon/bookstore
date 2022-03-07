@@ -1,7 +1,5 @@
 package com.test.bookstore.controllers;
 
-import java.util.Map;
-
 import com.test.bookstore.models.TransactionModel;
 import com.test.bookstore.services.TransactionService;
 
@@ -20,17 +18,6 @@ public class TransactionController {
     @Autowired
     TransactionService transactionService;
     
-    /* @GetMapping("/books/{bookId}")
-    public ResponseEntity<Map<String, Object>> getTransactions(@PathVariable("bookId") Long bookId, 
-    @RequestParam(name = "from", defaultValue = "") String from, @RequestParam(name = "to", defaultValue = "") String to){
-        Map<String, Object> transactions = transactionService.getTransactions(bookId, from, to);
-        
-        if(transactions == null)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-        return new ResponseEntity<>(transactions, HttpStatus.OK);
-    } */
-
     @GetMapping("/books/{bookId}")
     public ResponseEntity<TransactionModel> getTransactions(@PathVariable("bookId") Long bookId, 
     @RequestParam(name = "from", defaultValue = "") String from, @RequestParam(name = "to", defaultValue = "") String to){

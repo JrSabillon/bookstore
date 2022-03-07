@@ -24,11 +24,4 @@ public @Builder class LikeModel {
     public Long bookId;
     public Integer likes;
     @Singular public List<String> customers;
-
-    /* public Long getbookId(){
-        if(bookId == null)
-            throw new NullPointerException();
-
-        return bookId;
-    } */
 }

@@ -54,7 +54,7 @@ public class LikeService {
             }
         }
 
-        return null;
+        return null; //No hay datos entonces enviar null para mostrar NOT_FOUND
     }
     
 }
